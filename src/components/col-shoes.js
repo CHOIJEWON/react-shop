@@ -2,6 +2,7 @@ import { Col } from "react-bootstrap"
 
 
 export function ColShoes(props) {
+    console.log(props.shoes)
     return props.shoes.map((shoe) => {
         return (
             <Col>

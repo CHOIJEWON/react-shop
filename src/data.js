@@ -6,7 +6,6 @@ export const shoesData = [
       price : 120000,
       img: '/shoes1.jpg'
     },
-  
     {
       id : 1,
       title : "Red Knit",
@@ -14,7 +13,6 @@ export const shoesData = [
       price : 110000,
       img: '/shoes2.jpg'
     },
-  
     {
       id : 2,
       title : "Grey Yordan",
