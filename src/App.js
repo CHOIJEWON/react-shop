@@ -25,9 +25,9 @@ function App() {
           </Nav>
         </Container>
       </Navbar>
-
+      
     <Routes>
-      <Route path='/' element={<MainPage shoes={shoes}></MainPage>}></Route>
+      <Route path='/' element={<MainPage setShoes={setShoes} shoes={shoes}></MainPage>}></Route>
       <Route path='/detail/:id' element={<ProductDetail shoes={shoes}></ProductDetail>}></Route>
       <Route path='*' element={<div>없는 페이지에요</div>}></Route>
       <Route path='/event' element={<About></About>}>
