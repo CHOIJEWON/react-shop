@@ -7,7 +7,7 @@ export function MainPage(props){
           <div className='main-bg'></div>
           <Container>
             <Row>
-              <ColShoes shoes={props.shoes}></ColShoes>
+              <ColShoes setId={props.setId} shoes={props.shoes}></ColShoes>
             </Row>
           </Container>
         </>

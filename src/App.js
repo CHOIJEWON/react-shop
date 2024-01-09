@@ -11,8 +11,8 @@ import { shoesData } from './data';
 
 function App() {
 
-  let [shoes, setShoes] = useState(shoesData)
-  let navigate = useNavigate()
+  const [shoes, setShoes] = useState(shoesData)
+  const navigate = useNavigate()
 
   return (
     <div className="App">
