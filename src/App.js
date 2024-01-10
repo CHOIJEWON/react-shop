@@ -5,12 +5,13 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Outlet, Route, Routes, useNavigate } from 'react-router-dom';
 import './App.css';
+import { Cart } from './components/Cart';
 import { MainPage } from './components/main-page';
 import { ProductDetail } from './components/product-detail';
 import { shoesData } from './data';
 
 function App() {
-
+  
   const [shoes, setShoes] = useState(shoesData)
   const navigate = useNavigate()
 
@@ -22,6 +23,7 @@ function App() {
           <Nav className="me-auto">
             <Nav.Link onClick={() => {navigate('/')}}>Home</Nav.Link>
             <Nav.Link onClick={() => {navigate('/detail')}}>Detail</Nav.Link>
+            <Nav.Link onClick={() => {navigate('/cart')}}>Cart</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
@@ -30,6 +32,7 @@ function App() {
       <Route path='/' element={<MainPage setShoes={setShoes} shoes={shoes}></MainPage>}></Route>
       <Route path='/detail/:id' element={<ProductDetail shoes={shoes}></ProductDetail>}></Route>
       <Route path='*' element={<div>없는 페이지에요</div>}></Route>
+      <Route path='/cart' element={<Cart />}></Route>
       <Route path='/event' element={<About></About>}>
         <Route path='one' element={<div>첫 주문시 양배추즙 서비스</div>}></Route>
         <Route path='two' element={<div>생일기념 쿠폰받기</div>}></Route>

@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import { Nav } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import "../App.css";
+import { addCartItem } from "../store";
 
 export function Alert(props) {
     const [showAlert, setShowAlert] = useState(true);
@@ -56,6 +58,8 @@ export function ProductDetail(props){
     const product = [...props.shoes]
     const specificShoes = product.find((shoe) => Number(id) === shoe.id)
     const [tab, setTab] = useState(0)
+    const items = useSelector((state) => state.cart)
+    const dispatch = useDispatch()
   
     useEffect(() => {
       if(isNaN(inputValue)) return alert('숫자가 아닌 값을 입력하지 마세요')
@@ -76,7 +80,9 @@ export function ProductDetail(props){
                     <h4 className="pt-5">{specificShoes.title}</h4>
                     <p>{specificShoes.content}</p>
                     <p>{specificShoes.price}</p>
-                    <button className="btn btn-danger">주문하기</button> 
+                    <button onClick={() => {
+                      dispatch(addCartItem({id: specificShoes.id, name: specificShoes.title, count: 1}))
+                    }} className="btn btn-danger">주문하기</button> 
                 </div>
             </div>
             
