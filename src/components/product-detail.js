@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
+import { Nav } from "react-bootstrap";
 import { useParams } from "react-router";
-
+import "../App.css";
 
 export function Alert(props) {
     const [showAlert, setShowAlert] = useState(true);
@@ -27,19 +28,42 @@ export function Alert(props) {
     ) : null;
   }
 
+function TabContent(props){
+  const divBox = [<div>내용0</div>, <div>내용1</div>, <div>내용2</div>]
+
+  const [fade, setFade] = useState('')
+
+  useEffect(() => {
+    const timer = setTimeout(() => {setFade('end')}, 10)
+    return () => {
+      clearTimeout(timer)
+      setFade('')
+    }
+  }, [props.tab])
+
+  
+  return (
+    <div className={`start ${fade}`}>
+      {divBox[props.tab]}
+    </div>
+  )
+}
+
 export function ProductDetail(props){
-    let [count, setCount] = useState(0)
+    const [count, setCount] = useState(0)
     const [inputValue, setInputValue] = useState(0)
     const {id} = useParams()    
     const product = [...props.shoes]
     const specificShoes = product.find((shoe) => Number(id) === shoe.id)
-    
+    const [tab, setTab] = useState(0)
+  
     useEffect(() => {
       if(isNaN(inputValue)) return alert('숫자가 아닌 값을 입력하지 마세요')
     }, [inputValue])
     
     
     return (
+      <div className="fade-in">
         <div className="container">
             {/* <button onClick={() => setCount(count+1)}> 다시 </button> */}
             <Alert count={count} />
@@ -55,7 +79,20 @@ export function ProductDetail(props){
                     <button className="btn btn-danger">주문하기</button> 
                 </div>
             </div>
+            
+            <Nav variant="tabs" defaultActiveKey="link-1">
+              <Nav.Item>
+                <Nav.Link onClick={() => setTab(0)} defaultActiveKey eventKey="link-1">탭1</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link onClick={() => setTab(1)} eventKey="link-2">탭2</Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link onClick={() => setTab(2)}eventKey="link-3" > 탭3 </Nav.Link>
+              </Nav.Item>
+            </Nav>
+            <TabContent tab={tab}/>
         </div> 
+      </div>
     )
 }
-
